@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/main-view.dart';
+import 'package:flutter_application_1/message.dart';
+import 'package:flutter_application_1/statitc-messages.dart';
 
 void main() {
   runApp(const MyApp());
@@ -29,38 +32,59 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
+  late TextEditingController _controller;
 
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
+  List<String> messages = staticMessages;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = TextEditingController();
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
+          toolbarHeight: 0,
           title: Text(widget.title),
         ),
-        body: Center(
+        body: MainView(
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              const Text(
-                'You have pushed the button this many times:',
+            children: [
+              Expanded(
+                flex: 2,
+                child: ListView(
+                  reverse: true,
+                  shrinkWrap: true,
+                  children: messages
+                      .asMap()
+                      .entries
+                      .map((entry) => Message(
+                            isMe: entry.key % 2 == 0,
+                            message: entry.value,
+                          ))
+                      .toList(),
+                ),
               ),
-              Text(
-                '$_counter',
-                style: Theme.of(context).textTheme.headline4,
-              ),
+              Expanded(
+                flex: 1,
+                child: TextField(
+                  controller: _controller,
+                  decoration: const InputDecoration(
+                    border: InputBorder.none,
+                    hintText: 'Type a message',
+                  ),
+                ),
+              )
             ],
           ),
-        ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: _incrementCounter,
-          tooltip: 'Increment',
-          child: const Icon(Icons.add),
         ));
   }
 }
