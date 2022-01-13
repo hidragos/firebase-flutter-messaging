@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/global-data.dart';
 import 'package:flutter_application_1/main-view.dart';
+import 'package:flutter_application_1/message-input.dart';
 import 'package:flutter_application_1/message.dart';
 import 'package:flutter_application_1/statitc-messages.dart';
 
@@ -15,7 +17,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: GlobalData.primaryColor,
       ),
       home: const MyHomePage(title: 'Flutter Demo Home Page'),
     );
@@ -32,21 +34,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  late TextEditingController _controller;
-
   List<String> messages = staticMessages;
-
-  @override
-  void initState() {
-    super.initState();
-    _controller = TextEditingController();
-  }
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -56,34 +44,35 @@ class _MyHomePageState extends State<MyHomePage> {
           title: Text(widget.title),
         ),
         body: MainView(
-          child: Column(
-            children: [
-              Expanded(
-                flex: 2,
-                child: ListView(
-                  reverse: true,
-                  shrinkWrap: true,
-                  children: messages
-                      .asMap()
-                      .entries
-                      .map((entry) => Message(
-                            isMe: entry.key % 2 == 0,
-                            message: entry.value,
-                          ))
-                      .toList(),
-                ),
-              ),
-              Expanded(
-                flex: 1,
-                child: TextField(
-                  controller: _controller,
-                  decoration: const InputDecoration(
-                    border: InputBorder.none,
-                    hintText: 'Type a message',
+          child: Container(
+            decoration: const BoxDecoration(
+                gradient: LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    colors: [
+                  GlobalData.primaryColor,
+                  Colors.white,
+                ])),
+            child: Column(
+              children: [
+                Expanded(
+                  flex: 1,
+                  child: ListView(
+                    reverse: true,
+                    shrinkWrap: true,
+                    children: messages
+                        .asMap()
+                        .entries
+                        .map((entry) => Message(
+                              isMe: entry.key % 2 == 0,
+                              message: entry.value,
+                            ))
+                        .toList(),
                   ),
                 ),
-              )
-            ],
+                Expanded(flex: 0, child: MessageInput())
+              ],
+            ),
           ),
         ));
   }
