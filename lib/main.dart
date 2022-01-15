@@ -1,10 +1,8 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/global-data.dart';
 import 'package:flutter_application_1/main-view.dart';
 import 'package:flutter_application_1/message-input.dart';
 import 'package:flutter_application_1/message.dart';
-import 'package:flutter_application_1/statitc-messages.dart';
+import 'package:flutter_application_1/static-messages.dart';
 
 void main() {
   runApp(const Main());
@@ -40,7 +38,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  List<String> messages = staticMessages;
+  num count = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -66,7 +64,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   child: ListView(
                     reverse: true,
                     shrinkWrap: true,
-                    children: messages
+                    children: StaticMessages.staticMessages
                         .asMap()
                         .entries
                         .map((entry) => Message(
@@ -76,10 +74,18 @@ class _MyHomePageState extends State<MyHomePage> {
                         .toList(),
                   ),
                 ),
-                Expanded(flex: 0, child: MessageInput())
+                Expanded(
+                    flex: 0,
+                    child: MessageInput(
+                      notifyParent: refresh,
+                    ))
               ],
             ),
           ),
         ));
+  }
+
+  refresh() {
+    setState(() {});
   }
 }

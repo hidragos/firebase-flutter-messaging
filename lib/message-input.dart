@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/static-messages.dart';
 
 class MessageInput extends StatefulWidget {
-  const MessageInput({Key? key}) : super(key: key);
+  final Function() notifyParent;
+  const MessageInput({required this.notifyParent, Key? key}) : super(key: key);
 
   @override
   _MessageInputState createState() => _MessageInputState();
@@ -54,8 +56,12 @@ class _MessageInputState extends State<MessageInput> {
           IconButton(
             icon: const Icon(Icons.send),
             onPressed: () {
-              final String text = _controller.text;
+              if (_controller.text.isEmpty) return;
+
+              StaticMessages.addMessage(_controller.text);
               _controller.clear();
+
+              widget.notifyParent();
             },
           ),
         ],
