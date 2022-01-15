@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_1/main-view.dart';
 import 'package:flutter_application_1/message-input.dart';
 import 'package:flutter_application_1/message.dart';
+import 'package:flutter_application_1/messages-list.dart';
 import 'package:flutter_application_1/static-messages.dart';
 
 void main() {
@@ -59,21 +60,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 ])),
             child: Column(
               children: [
-                Expanded(
-                  flex: 1,
-                  child: ListView(
-                    reverse: true,
-                    shrinkWrap: true,
-                    children: StaticMessages.staticMessages
-                        .asMap()
-                        .entries
-                        .map((entry) => Message(
-                              isMe: entry.key % 2 == 0,
-                              message: entry.value,
-                            ))
-                        .toList(),
-                  ),
-                ),
+                Expanded(flex: 1, child: MessagesList()),
                 Expanded(
                     flex: 0,
                     child: MessageInput(
