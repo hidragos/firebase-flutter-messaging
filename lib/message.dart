@@ -1,15 +1,13 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 
 class Message extends StatelessWidget {
-  String message;
-  bool isMe;
+  final String message;
+  final bool isMe;
   final double isMeDifference = 32;
   final double standardPaddingH = 8;
   final double standardPaddingV = 0.5;
 
-  Message({required this.isMe, required this.message, Key? key})
+  const Message({required this.isMe, required this.message, Key? key})
       : super(key: key);
 
   @override
