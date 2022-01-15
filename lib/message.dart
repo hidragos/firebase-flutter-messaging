@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class Message extends StatelessWidget {
   final String message;
   final bool isMe;
-  final double isMeDifference = 32;
+  final double isMePaddingH = 32;
   final double standardPaddingH = 8;
   final double standardPaddingV = 0.5;
 
@@ -14,9 +14,9 @@ class Message extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.fromLTRB(
-          isMe ? isMeDifference : standardPaddingH,
+          isMe ? isMePaddingH : standardPaddingH,
           standardPaddingV,
-          !isMe ? isMeDifference : standardPaddingH,
+          !isMe ? isMePaddingH : standardPaddingH,
           standardPaddingV),
       child: SizedBox(
           width: Size.infinite.width,

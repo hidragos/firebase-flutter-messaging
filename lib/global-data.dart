@@ -1,5 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class GlobalData {
-  static const MaterialColor primaryColor = Colors.orange;
+  static const MaterialColor primaryColor = Colors.grey;
 }
