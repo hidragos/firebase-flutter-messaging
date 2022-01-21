@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_flutter_messaging/static-messages.dart';
 
@@ -11,19 +12,41 @@ class MessagesList extends StatefulWidget {
 }
 
 class _MessagesListState extends State<MessagesList> {
+  final Stream<QuerySnapshot> _messagesStream =
+      FirebaseFirestore.instance.collection('messages').snapshots();
+
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      reverse: true,
-      shrinkWrap: true,
-      children: StaticMessages.staticMessages
-          .asMap()
-          .entries
-          .map((entry) => Message(
-                isMe: entry.key % 2 == 0,
-                message: entry.value,
-              ))
-          .toList(),
+    return StreamBuilder<QuerySnapshot>(
+      stream: _messagesStream,
+      builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+        if (snapshot.hasError) {
+          return Text('$snapshot.error');
+        }
+
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return Text("Loading");
+        }
+
+        return ListView(
+          reverse: true,
+          shrinkWrap: true,
+          children: snapshot.data!.docs
+              .asMap()
+              .entries
+              .map((entry) =>
+                  Message(isMe: entry.key % 2 == 0, message: entry.value.id))
+              .toList(),
+          // children: StaticMessages.staticMessages
+          //     .asMap()
+          //     .entries
+          //     .map((entry) => Message(
+          //           isMe: entry.key % 2 == 0,
+          //           message: entry.value,
+          //         ))
+          //     .toList(),
+        );
+      },
     );
   }
 }
