@@ -1,5 +1,6 @@
 {
 	"workbench.colorTheme": "Bearded Theme Black & Diamond",
 	"editor.fontSize": 16,
-	"editor.fontFamily": "Hack"
+	"editor.fontFamily": "Hack",
+	"window.zoomLevel": 1
 }
