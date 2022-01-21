@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/static-messages.dart';
+import 'package:firebase_flutter_messaging/static-messages.dart';
 
 class MessageInput extends StatefulWidget {
   final Function() notifyParent;

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/main-view.dart';
-import 'package:flutter_application_1/message-input.dart';
-import 'package:flutter_application_1/messages-list.dart';
+import 'package:firebase_flutter_messaging/main-view.dart';
+import 'package:firebase_flutter_messaging/message-input.dart';
+import 'package:firebase_flutter_messaging/messages-list.dart';
 
 void main() {
   runApp(const Main());
