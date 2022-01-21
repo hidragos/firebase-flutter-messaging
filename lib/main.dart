@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/main-view.dart';
 import 'package:flutter_application_1/message-input.dart';
-import 'package:flutter_application_1/message.dart';
 import 'package:flutter_application_1/messages-list.dart';
-import 'package:flutter_application_1/static-messages.dart';
 
 void main() {
   runApp(const Main());

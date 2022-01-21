@@ -1,6 +1,5 @@
 {
-	"workbench.colorTheme": "Bearded Theme Black & Diamond",
-	"editor.fontSize": 16,
-	"editor.fontFamily": "Hack",
+	"workbench.colorTheme": "Community Material Theme Ocean High Contrast",
+	"editor.fontFamily": "JetBrains Mono",
 	"window.zoomLevel": 1
 }

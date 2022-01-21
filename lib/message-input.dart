@@ -57,8 +57,10 @@ class _MessageInputState extends State<MessageInput> {
             icon: const Icon(Icons.send),
             onPressed: () {
               if (_controller.text.isEmpty) return;
-
-              StaticMessages.addMessage(_controller.text);
+              final String message = _controller.text.trim();
+              if (message.isEmpty) return;
+              // trim text
+              StaticMessages.addMessage(message);
               _controller.clear();
 
               widget.notifyParent();
