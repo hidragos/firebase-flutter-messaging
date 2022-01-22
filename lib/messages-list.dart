@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_flutter_messaging/api/message.service.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_flutter_messaging/static-messages.dart';
 
@@ -13,7 +14,7 @@ class MessagesList extends StatefulWidget {
 
 class _MessagesListState extends State<MessagesList> {
   final Stream<QuerySnapshot> _messagesStream =
-      FirebaseFirestore.instance.collection('messages').snapshots();
+      MessageService.getMessagesStream();
 
   @override
   Widget build(BuildContext context) {
@@ -34,17 +35,9 @@ class _MessagesListState extends State<MessagesList> {
           children: snapshot.data!.docs
               .asMap()
               .entries
-              .map((entry) =>
-                  Message(isMe: entry.key % 2 == 0, message: entry.value.id))
+              .map((entry) => Message(
+                  isMe: entry.key % 2 == 0, message: entry.value['message']))
               .toList(),
-          // children: StaticMessages.staticMessages
-          //     .asMap()
-          //     .entries
-          //     .map((entry) => Message(
-          //           isMe: entry.key % 2 == 0,
-          //           message: entry.value,
-          //         ))
-          //     .toList(),
         );
       },
     );

@@ -1,8 +1,10 @@
+import 'package:firebase_flutter_messaging/api/message.service.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_flutter_messaging/static-messages.dart';
 
 class MessageInput extends StatefulWidget {
   final Function() notifyParent;
+
   const MessageInput({required this.notifyParent, Key? key}) : super(key: key);
 
   @override
@@ -60,7 +62,8 @@ class _MessageInputState extends State<MessageInput> {
               final String message = _controller.text.trim();
               if (message.isEmpty) return;
               // trim text
-              StaticMessages.addMessage(message);
+              MessageService.addMessage(message);
+              // StaticMessages.addMessage(message);
               _controller.clear();
 
               widget.notifyParent();
