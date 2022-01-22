@@ -1,5 +1,7 @@
 # Firebase Flutter Messaging
 
-<img width="250" alt="image" src="https://user-images.githubusercontent.com/16582407/149250263-8b4a4a56-14ed-4c15-8315-9983b074de57.png">
+<img width="250" alt="image" src="https://user-images.githubusercontent.com/16582407/150619371-61040106-c0f1-427e-9dfd-2f7a45b2b68a.png">
+
+
 
 Toy personal project to learn basic Flutter with Firebase integration.
