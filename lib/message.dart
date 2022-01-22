@@ -19,7 +19,9 @@ class Message extends StatelessWidget {
         child: Align(
             alignment: isMe ? Alignment.centerRight : Alignment.centerLeft,
             child: Card(
-                color: GlobalData.primaryColor[500],
+                color: isMe
+                    ? GlobalData.primaryColor[800]
+                    : GlobalData.primaryColor[500],
                 child: Padding(
                     padding: const EdgeInsets.all(16.0),
                     child: Text(message,
