@@ -18,8 +18,6 @@ class MessageService {
 
   static addMessage(String message) async {
     await messagesRef.add(MessageModel(
-        message: message,
-        timestamp: DateTime.now(),
-        sender: Platform.operatingSystem));
+        message: message, timestamp: DateTime.now(), sender: "AS"));
   }
 }

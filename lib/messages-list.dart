@@ -38,7 +38,7 @@ class _MessagesListState extends State<MessagesList> {
               .asMap()
               .entries
               .map((entry) => Message(
-                  isMe: Platform.operatingSystem == Platform.operatingSystem,
+                  isMe: Platform.operatingSystem == entry.value['sender'],
                   message: entry.value['message']))
               .toList(),
           // children: StaticMessages.staticMessages

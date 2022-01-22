@@ -1,4 +1,6 @@
+import 'package:firebase_flutter_messaging/global-data.dart';
 import 'package:flutter/material.dart';
+import 'package:dart_emoji/dart_emoji.dart';
 
 class Message extends StatelessWidget {
   final String message;
@@ -12,19 +14,22 @@ class Message extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.fromLTRB(
-          isMe ? isMePaddingH : standardPaddingH,
-          standardPaddingV,
-          !isMe ? isMePaddingH : standardPaddingH,
-          standardPaddingV),
-      child: SizedBox(
-          width: Size.infinite.width,
-          child: Card(
-              child: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Text(message),
-          ))),
-    );
+    return SizedBox(
+        width: 1,
+        child: Align(
+            alignment: isMe ? Alignment.centerRight : Alignment.centerLeft,
+            child: Card(
+                color: GlobalData.primaryColor[500],
+                child: Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: Text(message,
+                        style: TextStyle(
+                            fontSize: (!EmojiUtil.hasOnlyEmojis(message)
+                                ? null
+                                : message.length <= 32
+                                    ? message.length <= 4
+                                        ? 75
+                                        : 25
+                                    : null)))))));
   }
 }
