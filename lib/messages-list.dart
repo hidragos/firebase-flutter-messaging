@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_flutter_messaging/api/message.service.dart';
 import 'package:flutter/material.dart';
@@ -36,8 +38,17 @@ class _MessagesListState extends State<MessagesList> {
               .asMap()
               .entries
               .map((entry) => Message(
-                  isMe: entry.key % 2 == 0, message: entry.value['message']))
+                  isMe: Platform.operatingSystem == Platform.operatingSystem,
+                  message: entry.value['message']))
               .toList(),
+          // children: StaticMessages.staticMessages
+          //     .asMap()
+          //     .entries
+          //     .map((entry) => Message(
+          //           isMe: entry.key % 2 == 0,
+          //           message: entry.value,
+          //         ))
+          //     .toList(),
         );
       },
     );
